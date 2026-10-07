@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>결고딕</title>
+<meta name="description" content="결고딕(Gyeol Sans) — 한글 11,172자를 담은 무료 한글 고딕 폰트. Light, Regular, Bold 3종.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+@font-face { font-family: "Gyeol Sans"; src: url("fonts/GyeolSans-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Gyeol Sans"; src: url("fonts/GyeolSans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Gyeol Sans"; src: url("fonts/GyeolSans-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+/* Layout: 1120px 한 기둥. 맨 위는 글자 견본 격자(활자 견본집처럼 칸마다 코드 포인트),
+   아래로 굵기 → 써보기 → 글자 → 사용 범위 → 다운로드 순서. 강조색은 맑은 코발트 하나.
+   밝은 화면으로 고정 (시스템이 다크 모드여도 밝게 보인다). */
+:root {
+  color-scheme: light;
+  --bg: #FAFBFD;
+  --surface: #FFFFFF;
+  --fg: #161820;
+  --muted: #626878;
+  --line: #E3E7EE;
+  --accent: #2F55EE;
+  --accent-ink: #FFFFFF;
+  --soft: #EEF2FF;
+  --ok: #148A55;
+  --no: #D23B30;
+  --code-bg: #F3F5FA;
+  --code-fg: #1F2330;
+  --font: "Gyeol Sans", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font); font-size: 16px; line-height: 1.7;
+  word-break: keep-all; overflow-wrap: anywhere; -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; }
+.muted { color: var(--muted); }
+
+/* 상단 메뉴 */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
+.brand { font-weight: 700; font-size: 20px; color: var(--fg); text-decoration: none; letter-spacing: -0.01em; }
+.nav nav { display: flex; gap: 2px; }
+.nav nav a { color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 15px; white-space: nowrap; }
+.nav nav a:hover { color: var(--fg); background: var(--soft); }
+.nav nav a.nav-dl { color: var(--accent-ink); background: var(--accent); font-weight: 700; margin-left: 6px; }
+@media (max-width: 760px) { .nav nav a:not(.nav-dl) { display: none; } }
+
+/* 첫 화면 */
+.hero { display: grid; gap: 40px; padding-block: 40px 56px; }
+.mosaic { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); background: var(--surface); }
+.cell {
+  position: relative; aspect-ratio: 1; display: grid; place-items: center;
+  border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  font-size: clamp(40px, 8.4vw, 108px); line-height: 1;
+}
+.cell small { position: absolute; left: 8px; top: 7px; font: 500 11px/1 var(--mono); color: var(--muted); letter-spacing: 0.02em; }
+.cell small + small { left: auto; right: 8px; }
+.cell.accent { background: var(--accent); color: var(--accent-ink); }
+.cell.accent small { color: inherit; opacity: 0.75; }
+@media (max-width: 760px) {
+  .mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .cell { font-size: clamp(34px, 13vw, 76px); }
+  .cell small + small { display: none; }
+}
+.hero-text { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 24px 48px; align-items: end; }
+h1 { margin: 0; font-weight: 700; font-size: clamp(68px, 12vw, 152px); line-height: 0.95; letter-spacing: -0.03em; }
+.en { margin: 12px 0 0; font-weight: 300; font-size: clamp(20px, 2.4vw, 28px); color: var(--muted); }
+.lead { margin: 0 0 20px; font-size: 18px; max-width: 34em; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; height: 46px; padding-inline: 22px;
+  border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--fg);
+  font: 700 16px/1 var(--font); text-decoration: none; cursor: pointer; transition: border-color .15s, background .15s;
+}
+.btn:hover { border-color: var(--fg); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { filter: brightness(1.08); }
+@media (max-width: 760px) { .hero-text { grid-template-columns: 1fr; } }
+
+/* 후원 안내 */
+.donate {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+  padding: 16px 20px; border: 1px dashed var(--accent); border-radius: 8px; background: var(--soft);
+}
+.donate p { margin: 0; flex: 1 1 280px; min-width: 0; }
+.acct { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.acct-no { font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums; letter-spacing: 0.01em; white-space: nowrap; }
+.copy {
+  height: 32px; padding-inline: 12px; border-radius: 6px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--fg); font: 400 14px/1 var(--font); cursor: pointer;
+}
+.copy:hover { border-color: var(--fg); }
+
+/* 공통 구획 */
+.block { padding-block: 72px; border-top: 1px solid var(--line); }
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 28px; }
+h2 { margin: 0; font-size: clamp(30px, 4.2vw, 42px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
+.sec-head p { margin: 0; color: var(--muted); max-width: 40em; }
+.label { font: 500 12px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+/* 글자 수 */
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 0 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.facts div { padding: 18px 22px; border-left: 1px solid var(--line); min-width: 0; }
+.facts div:first-child { border-left: 0; }
+.facts dt { font-size: 14px; color: var(--muted); }
+.facts dd { margin: 2px 0 0; font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 48px; }
+.intro p { margin: 0; }
+@media (max-width: 760px) {
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts div:nth-child(3) { border-left: 0; }
+  .facts div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .intro { grid-template-columns: 1fr; }
+}
+
+/* 굵기 */
+.weights { display: grid; border-top: 1px solid var(--line); }
+.w { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 8px 32px; padding-block: 28px; border-bottom: 1px solid var(--line); }
+.w header { display: grid; gap: 6px; align-content: start; font-weight: 400; }
+.w header b { font-size: 18px; }
+.w-ko { margin: 0; font-size: clamp(30px, 5vw, 60px); line-height: 1.2; }
+.w-en { margin: 8px 0 0; font-size: clamp(16px, 1.8vw, 22px); line-height: 1.5; color: var(--muted); }
+@media (max-width: 760px) { .w { grid-template-columns: 1fr; } }
+
+/* 써보기 */
+.tester { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); overflow: hidden; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg button { border: 0; border-left: 1px solid var(--line); background: transparent; color: var(--muted); padding: 8px 16px; font: inherit; font-size: 15px; cursor: pointer; }
+.seg button:first-child { border-left: 0; }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.range { display: flex; align-items: center; gap: 12px; flex: 1 1 260px; min-width: 0; }
+.range label { white-space: nowrap; font-size: 15px; color: var(--muted); }
+.range output { font-variant-numeric: tabular-nums; color: var(--fg); }
+.range input { flex: 1; min-width: 0; accent-color: var(--accent); }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.presets button { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 4px 12px; font: 400 13px/1.4 var(--font); cursor: pointer; }
+.presets button:hover { color: var(--fg); border-color: var(--fg); }
+#tryText {
+  display: block; width: 100%; min-height: 240px; padding: 24px; border: 0; resize: vertical; outline: none;
+  background: transparent; color: var(--fg); font-family: var(--font); font-weight: 400; line-height: 1.35;
+}
+
+/* 글자 */
+.chars { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.tabs button { border: 1px solid var(--line); background: var(--surface); color: var(--muted); border-radius: 6px; padding: 7px 14px; font: 400 15px/1 var(--font); cursor: pointer; }
+.tabs button[aria-selected="true"] { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); }
+.tabs .shuffle { margin-left: auto; }
+.glyphs { display: grid; grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); background: var(--surface); }
+.glyphs button {
+  aspect-ratio: 1; border: 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  background: transparent; color: var(--fg); font: 400 28px/1 var(--font); cursor: pointer; padding: 0;
+}
+.glyphs button:hover, .glyphs button[aria-current="true"] { background: var(--soft); color: var(--accent); }
+.preview { position: sticky; top: 84px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 18px; display: grid; gap: 12px; }
+.preview .big { display: grid; place-items: center; aspect-ratio: 1; font-size: 170px; line-height: 1; background: repeating-linear-gradient(var(--bg) 0 1px, transparent 1px 100%) 0 50% / 100% 50%; border-radius: 4px; }
+.preview .meta { display: flex; justify-content: space-between; font: 500 13px/1 var(--mono); color: var(--muted); }
+.preview .trio { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; font-size: 44px; line-height: 1.2; }
+.preview .trio span small { display: block; font: 400 11px/1.6 var(--mono); color: var(--muted); }
+@media (max-width: 860px) { .chars { grid-template-columns: 1fr; } .preview { position: static; } .preview .big { font-size: 130px; } }
+
+/* 사용 범위 */
+.license { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table.usage { width: 100%; border-collapse: collapse; }
+.usage th, .usage td { padding: 13px 18px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.usage tr:last-child td { border-bottom: 0; }
+.usage thead th { font-size: 13px; font-weight: 400; color: var(--muted); }
+.usage td:last-child, .usage th:last-child { text-align: right; width: 90px; }
+.usage td span { display: block; font-size: 13px; color: var(--muted); }
+.chip { display: inline-block; padding: 3px 12px; border-radius: 999px; font-size: 14px; font-weight: 700; white-space: nowrap; }
+.chip.ok { color: var(--ok); background: color-mix(in srgb, var(--ok) 13%, transparent); }
+.chip.no { color: var(--no); background: color-mix(in srgb, var(--no) 13%, transparent); }
+.usage tr.deny td { background: color-mix(in srgb, var(--no) 5%, transparent); }
+.side { display: grid; gap: 16px; }
+.card { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); padding: 20px; }
+.card h3 { margin: 0 0 6px; font-size: 18px; }
+.card p { margin: 0 0 14px; color: var(--muted); }
+.credit-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.credit-line code { font: 700 17px/1.4 var(--font); padding: 6px 12px; border-radius: 6px; background: var(--bg); }
+details { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+details summary { cursor: pointer; padding: 14px 20px; font-weight: 700; }
+details pre { margin: 0; padding: 0 20px 20px; font: 400 14px/1.75 var(--font); white-space: pre-wrap; color: var(--muted); }
+@media (max-width: 860px) { .license { grid-template-columns: 1fr; } }
+
+/* 다운로드 */
+.dl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.dl {
+  display: grid; gap: 6px; align-content: start; padding: 22px; min-width: 0;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--fg); text-decoration: none;
+  transition: border-color .15s, transform .15s;
+}
+.dl:hover { border-color: var(--accent); transform: translateY(-2px); }
+.dl strong { font-size: 30px; line-height: 1.1; }
+.dl .desc { color: var(--muted); }
+.dl .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 10px; }
+.dl .size { font: 400 13px/1 var(--mono); color: var(--muted); }
+.dl .go { color: var(--accent); font-weight: 700; }
+.status { min-height: 1.7em; margin: 12px 0 0; color: var(--muted); }
+.notes { margin: 8px 0 28px; padding-left: 1.2em; color: var(--muted); }
+.code-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 36px 0 10px; }
+.code-head h3 { margin: 0; font-size: 20px; }
+pre.code { margin: 0; padding: 18px 20px; border-radius: 8px; border: 1px solid var(--line); background: var(--code-bg); color: var(--code-fg); font: 400 13px/1.65 var(--mono); overflow-x: auto; white-space: pre; }
+@media (max-width: 760px) { .dl-grid { grid-template-columns: 1fr; } }
+
+/* 바닥글 */
+.foot { border-top: 1px solid var(--line); padding-block: 36px 48px; font-size: 14px; color: var(--muted); }
+.foot .wrap { display: grid; gap: 10px; }
+.foot strong { color: var(--fg); }
+.foot .acct-no { font-size: 15px; color: var(--fg); }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">결고딕</a>
+    <nav aria-label="페이지 메뉴">
+      <a href="#weights">굵기</a>
+      <a href="#try">써보기</a>
+      <a href="#chars">글자</a>
+      <a href="#license">사용 범위</a>
+      <a class="nav-dl" href="#download">다운로드</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <div class="mosaic" aria-hidden="true">
+      <div class="cell" style="font-weight:700"><small></small><small>Bold</small>결</div>
+      <div class="cell" style="font-weight:300"><small></small><small>Light</small>ㅎ</div>
+      <div class="cell accent" style="font-weight:700"><small></small><small>Bold</small>G</div>
+      <div class="cell" style="font-weight:400"><small></small><small>Regular</small>뷁</div>
+      <div class="cell" style="font-weight:300"><small></small><small>Light</small>7</div>
+      <div class="cell" style="font-weight:700"><small></small><small>Bold</small>&amp;</div>
+      <div class="cell" style="font-weight:400"><small></small><small>Regular</small>a</div>
+      <div class="cell" style="font-weight:700"><small></small><small>Bold</small>꽉</div>
+      <div class="cell" style="font-weight:300"><small></small><small>Light</small>₩</div>
+      <div class="cell" style="font-weight:400"><small></small><small>Regular</small>고</div>
+      <div class="cell" style="font-weight:700"><small></small><small>Bold</small>k</div>
+      <div class="cell" style="font-weight:300"><small></small><small>Light</small>딕</div>
+    </div>
+    <div class="hero-text">
+      <div>
+        <h1>결고딕</h1>
+        <p class="en">Gyeol Sans</p>
+      </div>
+      <div>
+        <p class="lead">결고딕은 자모를 하나씩 조합해 만든 한글 고딕체입니다. 현대 한글 11,172자를 모두 담았고, Light, Regular, Bold 세 가지 굵기로 누구나 무료로 쓸 수 있습니다.</p>
+        <div class="cta">
+          <a class="btn primary" href="#download">무료로 받기</a>
+          <a class="btn" href="#license">사용 범위 보기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:72px">
+    <dl class="facts">
+      <div><dt>한글</dt><dd>11,172자</dd></div>
+      <div><dt>한글 자모</dt><dd>51자</dd></div>
+      <div><dt>영문·숫자·기호</dt><dd>106자</dd></div>
+      <div><dt>굵기</dt><dd>3종</dd></div>
+    </dl>
+    <div class="intro">
+      <p>모음이 자음 옆에 오는지 아래에 오는지, 받침이 있는지에 따라 자음의 크기와 자리를 따로 잡았습니다. 그래서 받침이 많은 글자와 없는 글자가 섞여도 글줄이 고르게 읽힙니다.</p>
+      <p>굵기가 달라지면 획 사이 속공간이 막히기 쉬워서, 굵기마다 모음 위치와 획 간격을 새로 계산했습니다. 작은 본문부터 큰 제목까지 같은 인상으로 쓸 수 있습니다.</p>
+    </div>
+    <div class="donate" style="margin-top:32px">
+      <p>결고딕은 무료 폰트입니다. 쓰시다가 도움이 되셨다면 후원으로 응원해 주세요.</p>
+      <div class="acct">
+        <span id="acct1">경남은행 <span class="acct-no">207-0226-9188-02</span></span>
+        <button class="copy" type="button" data-copy="경남은행 207-0226-9188-02" data-target="acct1">계좌 복사</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="weights">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>굵기</h2>
+        <p>가는 Light부터 두꺼운 Bold까지, 본문과 제목에 맞춰 고르세요.</p>
+      </div>
+      <div class="weights">
+        <article class="w" style="font-weight:300">
+          <header><span class="label">300</span><b>Light</b></header>
+          <div>
+            <p class="w-ko">다람쥐 헌 쳇바퀴에 타고파</p>
+            <p class="w-en">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789</p>
+          </div>
+        </article>
+        <article class="w" style="font-weight:400">
+          <header><span class="label">400</span><b>Regular</b></header>
+          <div>
+            <p class="w-ko">다람쥐 헌 쳇바퀴에 타고파</p>
+            <p class="w-en">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789</p>
+          </div>
+        </article>
+        <article class="w" style="font-weight:700">
+          <header><span class="label">700</span><b>Bold</b></header>
+          <div>
+            <p class="w-ko">다람쥐 헌 쳇바퀴에 타고파</p>
+            <p class="w-en">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="try">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>써보기</h2>
+        <p>아래 칸에 원하는 문장을 직접 입력해 보세요.</p>
+      </div>
+      <div class="tester">
+        <div class="controls">
+          <div class="seg" role="group" aria-label="굵기 선택">
+            <button type="button" id="w300" data-w="300" aria-pressed="false">Light</button>
+            <button type="button" id="w400" data-w="400" aria-pressed="false">Regular</button>
+            <button type="button" id="w700" data-w="700" aria-pressed="true">Bold</button>
+          </div>
+          <div class="range">
+            <label for="size">크기 <output id="sizeOut" for="size">64</output>px</label>
+            <input type="range" id="size" min="14" max="140" value="64">
+          </div>
+          <div class="presets" aria-label="예시 문장">
+            <button type="button">다람쥐 헌 쳇바퀴에 타고파</button>
+            <button type="button">The quick brown fox jumps over the lazy dog</button>
+            <button type="button">오늘 하루도 수고했어요 ₩12,000</button>
+          </div>
+        </div>
+        <textarea id="tryText" spellcheck="false" aria-label="써볼 문장">결고딕으로 아무 문장이나 써 보세요. 0123456789</textarea>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="chars">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>글자</h2>
+        <p>글자를 누르면 오른쪽에서 크게 보고, 세 가지 굵기로 비교할 수 있습니다.</p>
+      </div>
+      <div class="chars">
+        <div>
+          <div class="tabs" role="tablist" aria-label="글자 묶음">
+            <button type="button" role="tab" data-set="hangul" aria-selected="true">한글</button>
+            <button type="button" role="tab" data-set="jamo" aria-selected="false">자모</button>
+            <button type="button" role="tab" data-set="latin" aria-selected="false">영문</button>
+            <button type="button" role="tab" data-set="symbols" aria-selected="false">숫자·기호</button>
+            <button type="button" class="shuffle" id="shuffle">다른 한글 보기</button>
+          </div>
+          <div class="glyphs" id="glyphs" role="tabpanel"></div>
+        </div>
+        <aside class="preview" aria-live="polite">
+          <div class="big" id="pvBig">결</div>
+          <div class="meta"><span id="pvCode">U+ACB0</span><span id="pvName">한글 음절</span></div>
+          <div class="trio">
+            <span style="font-weight:300"><b id="pv300" style="font-weight:300">결</b><small>Light</small></span>
+            <span style="font-weight:400"><b id="pv400" style="font-weight:400">결</b><small>Regular</small></span>
+            <span style="font-weight:700"><b id="pv700" style="font-weight:700">결</b><small>Bold</small></span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="license">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>사용 범위</h2>
+        <p>개인과 기업 누구나 상업적 용도까지 무료로 쓸 수 있습니다. 폰트 파일을 판매하거나 수정하는 것만 금지합니다.</p>
+      </div>
+      <div class="license">
+        <div class="table-wrap">
+          <table class="usage">
+            <thead><tr><th>용도</th><th>사용</th></tr></thead>
+            <tbody>
+              <tr><td>인쇄·출판<span>책, 잡지, 포스터, 전단, 명함</span></td><td><b class="chip ok">가능</b></td></tr>
+              <tr><td>웹사이트·앱<span>웹폰트로 사용, 서비스 화면</span></td><td><b class="chip ok">가능</b></td></tr>
+              <tr><td>영상·방송<span>유튜브, 자막, 방송 그래픽</span></td><td><b class="chip ok">가능</b></td></tr>
+              <tr><td>광고·포장·간판<span>현수막, 상품 패키지, 사인물</span></td><td><b class="chip ok">가능</b></td></tr>
+              <tr><td>로고·BI·CI<span>상표나 브랜드 디자인</span></td><td><b class="chip ok">가능</b></td></tr>
+              <tr><td>임베딩<span>앱, 게임, 소프트웨어, PDF, 전자책에 포함</span></td><td><b class="chip ok">가능</b></td></tr>
+              <tr><td>무료 재배포<span>수정하지 않은 원본 그대로, 라이선스 문서와 함께</span></td><td><b class="chip ok">가능</b></td></tr>
+              <tr class="deny"><td>폰트 파일 판매<span>결고딕으로 만든 결과물을 파는 것은 괜찮습니다</span></td><td><b class="chip no">금지</b></td></tr>
+              <tr class="deny"><td>폰트 파일 수정·변형·결합<span>글자 모양 편집, 글자 추가·삭제, 다른 폰트와 합치기, 이름 바꿔 배포하기</span></td><td><b class="chip no">금지</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="side">
+          <div class="card">
+            <h3>출처 표기 (권장)</h3>
+            <p>필수는 아닙니다. 쓰실 때 폰트 이름과 제작자를 적어 주시면 큰 힘이 됩니다.</p>
+            <div class="credit-line">
+              <code id="credit">결고딕 · 제작 이윤재</code>
+              <button class="copy" type="button" data-copy="결고딕 · 제작 이윤재" data-target="credit">복사</button>
+            </div>
+          </div>
+          <details>
+            <summary>라이선스 전문 보기</summary>
+            <pre>결고딕 (Gyeol Sans) 라이선스
+Copyright (c) 2026 이윤재
+
+결고딕은 개인과 기업 누구나 무료로 사용할 수 있는 폰트입니다.
+상업적인 용도로도 자유롭게 쓸 수 있습니다.
+
+
+1. 허용하는 것
+
+  - 개인적·상업적 목적의 모든 사용
+    (인쇄물, 출판물, 웹사이트, 앱, 영상, 방송, 광고, 상품 포장, 간판 등)
+  - 로고, BI, CI 등 상표 디자인에 사용
+  - 웹폰트로 사용하거나 앱, 게임, 소프트웨어, 전자문서(PDF 등)에 포함(임베딩)
+  - 폰트 파일을 수정하지 않은 원본 그대로 무료로 재배포
+    (이 라이선스 문서를 함께 넣어 주세요)
+
+
+2. 금지하는 것
+
+  - 폰트 파일 자체를 유료로 판매하는 것
+    결고딕을 사용해 만든 결과물(디자인, 출판물, 영상, 앱, 게임 등)을
+    판매하는 것은 괜찮습니다.
+  - 폰트 파일을 수정하거나 변형하는 것, 다른 폰트와 결합하는 것
+    (글자 모양 편집, 글자 추가·삭제, 다른 폰트와 합치기,
+     이름을 바꿔 배포하기 등)
+    결고딕으로 만든 로고나 글자 이미지를 디자인 작업에서 다듬는 것은
+    폰트 파일을 수정하는 것이 아니므로 괜찮습니다.
+
+
+3. 권장 사항 (필수 아님)
+
+  - 사용할 때 폰트 이름과 제작자를 표기해 주시면 감사하겠습니다.
+    예) 결고딕 · 제작 이윤재
+    표기하지 않아도 라이선스 위반이 아닙니다.
+
+
+4. 책임의 한계
+
+  - 결고딕은 있는 그대로 제공됩니다. 폰트 사용으로 생긴 문제에 대해
+    제작자는 책임을 지지 않습니다.
+
+
+후원 (선택)
+
+  결고딕이 도움이 되셨다면 후원으로 응원해 주세요.
+  경남은행 207-0226-9188-02
+
+
+------------------------------------------------------------------------
+
+Gyeol Sans License (English summary)
+Copyright (c) 2026 이윤재
+
+- Free for personal and commercial use, including logos, web, apps,
+  video, print and embedding in software or documents.
+- You may redistribute the original, unmodified font files free of charge
+  (please include this license file).
+- You may NOT sell the font files. Selling things you made with the font
+  is fine.
+- You may NOT modify, alter or combine the font files with other fonts
+  (editing glyphs, adding or removing characters, merging, renaming).
+- Crediting &quot;Gyeol Sans by 이윤재&quot; is appreciated but not required.
+- The font is provided &quot;as is&quot;, without warranty of any kind.</pre>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="download">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>다운로드</h2>
+        <p>버전 1.102 · 모든 묶음에 라이선스 문서가 들어 있습니다.</p>
+      </div>
+      <div class="dl-grid">
+        <a class="dl" href="download/GyeolSans-TTF.zip" download data-dl="GyeolSans-TTF.zip">
+          <strong>TTF</strong>
+          <span class="desc">윈도우와 맥에 설치해서 문서 작업에 쓰기 좋은 형식입니다.</span>
+          <span class="row"><span class="size">Light · Regular · Bold / 1.1 MB</span><span class="go">받기</span></span>
+        </a>
+        <a class="dl" href="download/GyeolSans-OTF.zip" download data-dl="GyeolSans-OTF.zip">
+          <strong>OTF</strong>
+          <span class="desc">포토샵, 일러스트레이터 같은 디자인 프로그램에 잘 맞습니다.</span>
+          <span class="row"><span class="size">Light · Regular · Bold / 0.8 MB</span><span class="go">받기</span></span>
+        </a>
+        <a class="dl" href="download/GyeolSans-WEB.zip" download data-dl="GyeolSans-WEB.zip">
+          <strong>웹폰트</strong>
+          <span class="desc">WOFF2 파일과 CSS가 들어 있어 웹사이트에 바로 쓸 수 있습니다.</span>
+          <span class="row"><span class="size">WOFF2 + CSS / 0.4 MB</span><span class="go">받기</span></span>
+        </a>
+      </div>
+      <p class="status" id="dlStatus" role="status"></p>
+      <ul class="notes">
+        <li>압축을 풀고 폰트 파일을 더블클릭한 뒤 설치를 누르면 됩니다.</li>
+        <li>TTF와 OTF 중 한 가지만 설치하세요. 둘 다 설치하면 글꼴 목록에 같은 이름이 두 번 나옵니다.</li>
+      </ul>
+
+      <div class="donate">
+        <p>후원은 선택입니다. 후원하지 않아도 모든 용도에 똑같이 쓸 수 있어요. 결고딕이 쓸모 있으셨다면 아래 계좌로 응원해 주세요.</p>
+        <div class="acct">
+          <span id="acct2">경남은행 <span class="acct-no">207-0226-9188-02</span></span>
+          <button class="copy" type="button" data-copy="경남은행 207-0226-9188-02" data-target="acct2">계좌 복사</button>
+        </div>
+      </div>
+
+      <div class="code-head">
+        <h3>웹폰트 사용법</h3>
+        <button class="copy" type="button" data-target="cssCode">코드 복사</button>
+      </div>
+      <pre class="code" id="cssCode">@font-face {
+  font-family: "Gyeol Sans";
+  src: url("GyeolSans-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gyeol Sans";
+  src: url("GyeolSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gyeol Sans";
+  src: url("GyeolSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+body {
+  font-family: "Gyeol Sans", sans-serif;
+}</pre>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><strong>결고딕</strong> Gyeol Sans · 제작 이윤재 · 버전 1.102</div>
+    <div class="acct">
+      <span id="acct3">후원 경남은행 <span class="acct-no">207-0226-9188-02</span></span>
+      <button class="copy" type="button" data-copy="경남은행 207-0226-9188-02" data-target="acct3">계좌 복사</button>
+    </div>
+    <div>Copyright 2026 이윤재. 폰트 파일의 판매와 수정을 제외한 모든 용도에 무료로 쓸 수 있습니다.</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var $ = function (s, el) { return (el || document).querySelector(s); };
+  var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
+  var hex = function (ch) { return "U+" + ch.codePointAt(0).toString(16).toUpperCase().padStart(4, "0"); };
+
+  // 견본 격자: 칸마다 코드 포인트 표시
+  $$(".cell").forEach(function (c) {
+    var ch = c.textContent.replace(/(Light|Regular|Bold)/g, "").trim();
+    c.querySelector("small").textContent = hex(ch);
+  });
+
+  // 써보기
+  var ta = $("#tryText"), size = $("#size"), out = $("#sizeOut");
+  function setSize() { ta.style.fontSize = size.value + "px"; out.textContent = size.value; }
+  size.addEventListener("input", setSize);
+  setSize();
+  function setWeight(btn) {
+    $$(".seg button").forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+    ta.style.fontWeight = btn.dataset.w;
+  }
+  $$(".seg button").forEach(function (b) { b.addEventListener("click", function () { setWeight(b); }); });
+  setWeight($("#w700"));
+  $$(".presets button").forEach(function (b) {
+    b.addEventListener("click", function () { ta.value = b.textContent; ta.focus(); });
+  });
+
+  // 글자 보기
+  var COMMON = "결고딕가나다라마바사아자차카타파하각난닫랄맘밥삿앙잦찿캌탙팦핳고노도로모보소오조초코토포호구누두루무부수우주추쿠투푸후과궈귀의화훠휘왜외웨위꽉뷁쀍읽없삶앉않닭흙젊밟값빛꽃꿈빵쌍짱뜰뿔쑥쭉한글폰트";
+  var SETS = {
+    jamo: "ㄱㄲㄳㄴㄵㄶㄷㄸㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅃㅄㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ",
+    latin: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    symbols: "0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~₩·…‘’“”–—"
+  };
+  var grid = $("#glyphs"), current = "hangul", hangul = Array.from(COMMON);
+  function randomHangul() {
+    var a = [];
+    for (var i = 0; i < 96; i++) a.push(String.fromCharCode(0xAC00 + Math.floor(Math.random() * 11172)));
+    return a;
+  }
+  function kind(ch) {
+    var c = ch.codePointAt(0);
+    if (c >= 0xAC00 && c <= 0xD7A3) return "한글 음절";
+    if (c >= 0x3131 && c <= 0x3163) return "한글 자모";
+    if (/[A-Za-z]/.test(ch)) return "라틴 문자";
+    if (/[0-9]/.test(ch)) return "숫자";
+    return "기호";
+  }
+  function select(ch, btn) {
+    $("#pvBig").textContent = ch;
+    $("#pv300").textContent = ch; $("#pv400").textContent = ch; $("#pv700").textContent = ch;
+    $("#pvCode").textContent = hex(ch);
+    $("#pvName").textContent = kind(ch);
+    $$("#glyphs button").forEach(function (b) { b.removeAttribute("aria-current"); });
+    if (btn) btn.setAttribute("aria-current", "true");
+  }
+  function render() {
+    var chars = current === "hangul" ? hangul : Array.from(SETS[current]);
+    grid.textContent = "";
+    chars.forEach(function (ch) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = ch;
+      b.setAttribute("aria-label", ch + " " + hex(ch));
+      b.addEventListener("click", function () { select(ch, b); });
+      grid.appendChild(b);
+    });
+    $("#shuffle").hidden = current !== "hangul";
+  }
+  $$(".tabs [role=tab]").forEach(function (t) {
+    t.addEventListener("click", function () {
+      current = t.dataset.set;
+      $$(".tabs [role=tab]").forEach(function (x) { x.setAttribute("aria-selected", String(x === t)); });
+      render();
+    });
+  });
+  $("#shuffle").addEventListener("click", function () { hangul = randomHangul(); render(); });
+  render();
+  select("결", grid.firstChild);
+
+  // 복사 버튼 (클립보드가 막혀 있으면 글자를 선택해 둔다)
+  function selectText(el) {
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    var s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(r);
+  }
+  $$(".copy").forEach(function (btn) {
+    var label = btn.textContent;
+    btn.addEventListener("click", function () {
+      var target = document.getElementById(btn.dataset.target);
+      var text = btn.dataset.copy || (target ? target.textContent : "");
+      var done = function (msg) {
+        btn.textContent = msg;
+        setTimeout(function () { btn.textContent = label; }, 1800);
+      };
+      var fallback = function () { if (target) selectText(target); done("선택됨, Ctrl+C"); };
+      try {
+        navigator.clipboard.writeText(text).then(function () { done("복사됨"); }, fallback);
+      } catch (e) { fallback(); }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

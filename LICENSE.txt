@@ -1,0 +1,63 @@
+결고딕 (Gyeol Sans) 라이선스
+Copyright (c) 2026 이윤재
+
+결고딕은 개인과 기업 누구나 무료로 사용할 수 있는 폰트입니다.
+상업적인 용도로도 자유롭게 쓸 수 있습니다.
+
+
+1. 허용하는 것
+
+  - 개인적·상업적 목적의 모든 사용
+    (인쇄물, 출판물, 웹사이트, 앱, 영상, 방송, 광고, 상품 포장, 간판 등)
+  - 로고, BI, CI 등 상표 디자인에 사용
+  - 웹폰트로 사용하거나 앱, 게임, 소프트웨어, 전자문서(PDF 등)에 포함(임베딩)
+  - 폰트 파일을 수정하지 않은 원본 그대로 무료로 재배포
+    (이 라이선스 문서를 함께 넣어 주세요)
+
+
+2. 금지하는 것
+
+  - 폰트 파일 자체를 유료로 판매하는 것
+    결고딕을 사용해 만든 결과물(디자인, 출판물, 영상, 앱, 게임 등)을
+    판매하는 것은 괜찮습니다.
+  - 폰트 파일을 수정하거나 변형하는 것, 다른 폰트와 결합하는 것
+    (글자 모양 편집, 글자 추가·삭제, 다른 폰트와 합치기,
+     이름을 바꿔 배포하기 등)
+    결고딕으로 만든 로고나 글자 이미지를 디자인 작업에서 다듬는 것은
+    폰트 파일을 수정하는 것이 아니므로 괜찮습니다.
+
+
+3. 권장 사항 (필수 아님)
+
+  - 사용할 때 폰트 이름과 제작자를 표기해 주시면 감사하겠습니다.
+    예) 결고딕 · 제작 이윤재
+    표기하지 않아도 라이선스 위반이 아닙니다.
+
+
+4. 책임의 한계
+
+  - 결고딕은 있는 그대로 제공됩니다. 폰트 사용으로 생긴 문제에 대해
+    제작자는 책임을 지지 않습니다.
+
+
+후원 (선택)
+
+  결고딕이 도움이 되셨다면 후원으로 응원해 주세요.
+  경남은행 207-0226-9188-02
+
+
+------------------------------------------------------------------------
+
+Gyeol Sans License (English summary)
+Copyright (c) 2026 이윤재
+
+- Free for personal and commercial use, including logos, web, apps,
+  video, print and embedding in software or documents.
+- You may redistribute the original, unmodified font files free of charge
+  (please include this license file).
+- You may NOT sell the font files. Selling things you made with the font
+  is fine.
+- You may NOT modify, alter or combine the font files with other fonts
+  (editing glyphs, adding or removing characters, merging, renaming).
+- Crediting "Gyeol Sans by 이윤재" is appreciated but not required.
+- The font is provided "as is", without warranty of any kind.
