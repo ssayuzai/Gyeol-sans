@@ -9,9 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-@font-face { font-family: "Gyeol Sans"; src: url("fonts/GyeolSans-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
-@font-face { font-family: "Gyeol Sans"; src: url("fonts/GyeolSans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "Gyeol Sans"; src: url("fonts/GyeolSans-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Gyeol Sans"; src: url("GyeolSans-Light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Gyeol Sans"; src: url("GyeolSans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Gyeol Sans"; src: url("GyeolSans-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 
 /* Layout: 1120px 한 기둥. 맨 위는 글자 견본 격자(활자 견본집처럼 칸마다 코드 포인트),
    아래로 굵기 → 써보기 → 글자 → 사용 범위 → 다운로드 순서. 강조색은 맑은 코발트 하나.
@@ -209,7 +209,14 @@ details pre { margin: 0; padding: 0 20px 20px; font: 400 14px/1.75 var(--font); 
   border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--fg); text-decoration: none;
   transition: border-color .15s, transform .15s;
 }
-.dl:hover { border-color: var(--accent); transform: translateY(-2px); }
+a.dl:hover { border-color: var(--accent); transform: translateY(-2px); }
+.files { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.files a {
+  display: inline-flex; align-items: center; height: 38px; padding-inline: 14px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg); text-decoration: none; font-weight: 700; font-size: 15px;
+}
+.files a:hover { border-color: var(--accent); color: var(--accent); }
+.files a.sub { font-weight: 400; color: var(--muted); }
 .dl strong { font-size: 30px; line-height: 1.1; }
 .dl .desc { color: var(--muted); }
 .dl .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 10px; }
@@ -491,30 +498,45 @@ Copyright (c) 2026 이윤재
     <div class="wrap">
       <div class="sec-head">
         <h2>다운로드</h2>
-        <p>버전 1.102 · 모든 묶음에 라이선스 문서가 들어 있습니다.</p>
+        <p>버전 1.102 · 필요한 형식과 굵기를 골라 받으세요.</p>
       </div>
+      
       <div class="dl-grid">
-        <a class="dl" href="download/GyeolSans-TTF.zip" download data-dl="GyeolSans-TTF.zip">
+        <div class="dl">
           <strong>TTF</strong>
           <span class="desc">윈도우와 맥에 설치해서 문서 작업에 쓰기 좋은 형식입니다.</span>
-          <span class="row"><span class="size">Light · Regular · Bold / 1.1 MB</span><span class="go">받기</span></span>
-        </a>
-        <a class="dl" href="download/GyeolSans-OTF.zip" download data-dl="GyeolSans-OTF.zip">
+          <div class="files">
+            <a href="GyeolSans-Light.ttf" download>Light</a>
+            <a href="GyeolSans-Regular.ttf" download>Regular</a>
+            <a href="GyeolSans-Bold.ttf" download>Bold</a>
+          </div>
+        </div>
+        <div class="dl">
           <strong>OTF</strong>
           <span class="desc">포토샵, 일러스트레이터 같은 디자인 프로그램에 잘 맞습니다.</span>
-          <span class="row"><span class="size">Light · Regular · Bold / 0.8 MB</span><span class="go">받기</span></span>
-        </a>
-        <a class="dl" href="download/GyeolSans-WEB.zip" download data-dl="GyeolSans-WEB.zip">
+          <div class="files">
+            <a href="GyeolSans-Light.otf" download>Light</a>
+            <a href="GyeolSans-Regular.otf" download>Regular</a>
+            <a href="GyeolSans-Bold.otf" download>Bold</a>
+          </div>
+        </div>
+        <div class="dl">
           <strong>웹폰트</strong>
-          <span class="desc">WOFF2 파일과 CSS가 들어 있어 웹사이트에 바로 쓸 수 있습니다.</span>
-          <span class="row"><span class="size">WOFF2 + CSS / 0.4 MB</span><span class="go">받기</span></span>
-        </a>
+          <span class="desc">WOFF2 파일과 CSS로 웹사이트에 바로 쓸 수 있습니다.</span>
+          <div class="files">
+            <a href="GyeolSans-Light.woff2" download>Light</a>
+            <a href="GyeolSans-Regular.woff2" download>Regular</a>
+            <a href="GyeolSans-Bold.woff2" download>Bold</a>
+            <a class="sub" href="gyeol-sans.css" download>CSS</a>
+          </div>
+        </div>
       </div>
-      <p class="status" id="dlStatus" role="status"></p>
-      <ul class="notes">
-        <li>압축을 풀고 폰트 파일을 더블클릭한 뒤 설치를 누르면 됩니다.</li>
+      <ul class="notes" style="margin-top:16px">
+        <li>받은 폰트 파일을 더블클릭한 뒤 설치를 누르면 됩니다.</li>
         <li>TTF와 OTF 중 한 가지만 설치하세요. 둘 다 설치하면 글꼴 목록에 같은 이름이 두 번 나옵니다.</li>
+        <li>폰트를 다시 나눠 줄 때는 <a href="LICENSE.txt" download>라이선스 문서(LICENSE.txt)</a>를 함께 넣어 주세요.</li>
       </ul>
+      
 
       <div class="donate">
         <p>후원은 선택입니다. 후원하지 않아도 모든 용도에 똑같이 쓸 수 있어요. 결고딕이 쓸모 있으셨다면 아래 계좌로 응원해 주세요.</p>

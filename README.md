@@ -2,7 +2,7 @@
 
 현대 한글 11,172자를 모두 담은 무료 한글 고딕 폰트입니다. Light, Regular, Bold 세 가지 굵기가 있습니다.
 
-- 다운로드: `download/` 폴더 (TTF, OTF, 웹폰트 ZIP)
+- 파일: GyeolSans-Light/Regular/Bold (.ttf, .otf, .woff2), gyeol-sans.css
 - 버전: 1.102
 - 제작: 이윤재
 
